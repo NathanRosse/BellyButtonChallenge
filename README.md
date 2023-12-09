@@ -1,7 +1,11 @@
 # BellyButtonChallenge
 We begin our code ill at ease with deadlines approaching and no mentor sessions scheduled in time, although I still have askBCS and online resources to help guide me.
+Took the bonus script out because it was causing errors for me, storing here, repost back in line 51.   <script src="./static/js/bonus.js"></script>
+
+Things have gone well with looking at week 14 examples but I have had issues with referencing the correct datasets sometimes. ChatGPT really helps here as I plug my code and it helps spot inconsistenties in my writing.
 
 
+I've managed to create the neccessary graphs but they are rough and I need to schedule either a tutoring session or askBCS to help clean it up and make it presentable. We are aiming for an A after all.
 
 Instructions
 Complete the following steps:
