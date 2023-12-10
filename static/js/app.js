@@ -12,18 +12,21 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
         dropdown.append("option").text(sample).property("value", sample);
     });
 
-    // Initial chart with the first sample
-    updateChart(data.names[0]);
-    drawBubbleChart(data.names[0]);
-    displayMetadata(data.names[0]); // Display metadata for the initial sample
+    // Initial update for all plots and metadata
+    updatePlotsAndMetadata(data.names[0]);
 
-    // Update chart, bubble chart, and metadata when dropdown selection changes
+    // Update all plots and metadata when dropdown selection changes
     dropdown.on("change", function () {
         var selectedSample = this.value;
-        updateChart(selectedSample);
-        drawBubbleChart(selectedSample);
-        displayMetadata(selectedSample); // Display metadata for the selected sample
+        updatePlotsAndMetadata(selectedSample);
     });
+
+    // Function to update all plots and metadata based on the selected sample
+    function updatePlotsAndMetadata(sample) {
+        updateChart(sample);
+        drawBubbleChart(sample);
+        displayMetadata(sample);
+    }
 
     // Function to update the horizontal bar chart based on the selected sample
     function updateChart(sample) {
@@ -36,44 +39,55 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
             x: selectedData.sample_values.slice(0, 10).reverse(),
             y: selectedData.otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse(),
             text: selectedData.otu_labels.slice(0, 10).reverse(),
+            marker: {
+                color: 'rgba(50,171,96,0.6)', // Custom color for bars
+            }
         };
 
         var layout = {
-            title: `Top 10 OTUs for Sample ${sample}`,
+            title: `Top 10 Operational Taxonomic Units (OTUs) for Sample ${sample}`,
             xaxis: { title: 'Sample Values' },
-            yaxis: { title: 'OTU IDs' }
+            yaxis: { title: 'OTU IDs' },
+            margin: { t: 50, l: 150 }
         };
 
         // Plot the bar chart in the 'bar' div
         Plotly.newPlot('bar', [trace], layout);
     }
 
-    // Function to draw the bubble chart based on the selected sample
-    function drawBubbleChart(sample) {
-        var selectedData = data.samples.find(d => d.id === sample);
+// Function to draw the bubble chart based on the selected sample
+function drawBubbleChart(sample) {
+    var selectedData = data.samples.find(d => d.id === sample);
 
-        // Extract necessary data for the bubble chart
-        var trace = {
-            type: 'bubble',
-            mode: 'markers',
-            x: selectedData.otu_ids,
-            y: selectedData.sample_values,
-            marker: {
-                size: selectedData.sample_values,
-                color: selectedData.otu_ids,
-            },
-            text: selectedData.otu_labels,
-        };
+    // Extract necessary data for the bubble chart
+    var trace = {
+        type: 'bubble',
+        mode: 'markers',
+        x: selectedData.otu_ids,
+        y: selectedData.sample_values,
+        marker: {
+            size: selectedData.sample_values,
+            color: selectedData.otu_ids,
+            colorscale: 'Viridis' // Custom colorscale for better gradient
+        },
+        text: selectedData.otu_labels,
+    };
 
-        var layout = {
-            title: `Bubble Chart for Sample ${sample}`,
-            xaxis: { title: 'OTU IDs' },
-            yaxis: { title: 'Sample Values' },
-        };
+    var layout = {
+        title: `Bacterial Cultures for Sample ${sample}`,
+        xaxis: {
+            title: 'OTU IDs',
+            tickvals: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500], // Set custom tick values
+            ticktext: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]  // Set tick labels accordingly
+        },
+        yaxis: { title: 'Sample Values' },
+        margin: { t: 50 }
+    };
 
-        // Plot the bubble chart in the 'bubble' div
-        Plotly.newPlot('bubble', [trace], layout);
-    }
+    // Plot the bubble chart in the 'bubble' div
+    Plotly.newPlot('bubble', [trace], layout);
+}
+
 
     // Function to display sample metadata based on the selected sample
     function displayMetadata(sample) {

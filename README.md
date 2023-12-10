@@ -7,6 +7,8 @@ Things have gone well with looking at week 14 examples but I have had issues wit
 
 I've managed to create the neccessary graphs but they are rough and I need to schedule either a tutoring session or askBCS to help clean it up and make it presentable. We are aiming for an A after all.
 
+Slightly more progress and things are looking nicer as well. There seems to be some sort of issue where the data on the graphs appear off compared to the example pictures. I will need to look further into this with help to locate the issue. Overall we are feeling very good about this so far.
+
 Instructions
 Complete the following steps:
 
