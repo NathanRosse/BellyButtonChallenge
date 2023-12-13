@@ -9,6 +9,8 @@ I've managed to create the neccessary graphs but they are rough and I need to sc
 
 Slightly more progress and things are looking nicer as well. There seems to be some sort of issue where the data on the graphs appear off compared to the example pictures. I will need to look further into this with help to locate the issue. Overall we are feeling very good about this so far.
 
+Thank you Will for your words of wisdom, hearing solid advice from someone that knows what they are doing is a always appreciated. Apparently my issue wasn't an issue at all, just the example had a white labeled data point that hides in the charts background. Slightly more coding edits but its looking nicer. Need to make final formatting adjustments and maybe make the bubbles seperated but we will see what can be done.
+
 Instructions
 Complete the following steps:
 
